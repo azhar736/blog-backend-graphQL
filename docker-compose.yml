@@ -1,0 +1,21 @@
+version: '3.4'
+
+networks:
+  mynetwork:
+    driver: bridge
+
+services:
+  postgres:
+    container_name: posts-db
+    image: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postsDB
+      POSTGRES_PASSWORD: 1234
+
+volumes:
+  postgres_data:
