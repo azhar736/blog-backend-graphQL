@@ -21,6 +21,10 @@ class UserService {
     return hashPassword;
   }
 
+  public static getUserById(id: number) {
+    return prismaClient.user.findUnique({ where: { id } });
+  }
+
   public static createUser(payload: CreateUserPayload) {
     const { firstName, lastName, email, password } = payload;
     /*We can do the API level validation for the Input here */
@@ -53,6 +57,10 @@ class UserService {
     //Generate Token
     const token = sign({ id: user.id, email: user.email }, JWT_SECRET);
     return token;
+  }
+
+  public static decodedToken(token: string) {
+    return verify(token, JWT_SECRET);
   }
 }
 

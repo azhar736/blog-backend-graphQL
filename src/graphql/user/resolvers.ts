@@ -11,6 +11,14 @@ const queries = {
     });
     return token;
   },
+  getCurrentLoggedIn: async (_: any, parameters: any, context: any) => {
+    if (context && context.user) {
+      const userId = context.user.id;
+      const user = await UserService.getUserById(userId);
+      return user;
+    }
+    throw new Error("Invalid User");
+  },
 };
 
 const mutation = {
