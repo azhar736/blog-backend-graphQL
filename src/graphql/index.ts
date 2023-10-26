@@ -1,12 +1,12 @@
 import { ApolloServer } from "@apollo/server";
-import { User } from "../graphql/user";
+import { User } from "./user";
 async function createApolloGraphqlServer() {
   //Create GraphQL Server
   const Server = new ApolloServer({
     //Schema
     typeDefs: `
      type Query {
-       hello:String
+       ${User.queries}
      }
      type Mutation {
      ${User.mutation}
